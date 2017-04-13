@@ -1,6 +1,6 @@
 {
   "name": "chromium-headless-client",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple wrapper for the chromium headless browser.",
   "main": "index.js",
   "scripts": {
@@ -15,6 +15,11 @@
   ],
   "author": "Bryce Watson, BryceEWatson@gmail.com",
   "license": "ISC",
+  "repository" :
+  {
+      "type" : "git",
+      "url" : "https://github.com/bryceewatson/chromium-headless-client.git"
+  },
   "dependencies": {
     "chrome-remote-interface": "^0.18.0"
   },
