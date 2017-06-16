@@ -2,14 +2,21 @@ const CHC = require('../index');
 const expect = require('chai').expect;
 
 describe('Chromium Headless Client', () => {
-    it('should initialize', (done) => {
-        CHC.init({startPage: 'https://www.google.com', headless: true}).then((res) => {
+	before((done) => {
+		CHC.init({startPage: 'https://www.google.com', headless: true}).then((res) => {
             done();
         }).catch((err) => {
             console.log(err);
             done(err);
         });
-    });
+	});
+	after((done) => {
+		CHC.shutdown().then(() => {
+			done();
+		}).catch((err) => {
+			done(err);
+		});
+	});
     it('should evaluate an expression', (done) => {
         CHC.evaluateExpression({expression: 'document.getElementById("main").id'}).then((res) => {
             expect(res.result.value).to.equal('main');
@@ -65,13 +72,6 @@ describe('Chromium Headless Client', () => {
 			}).catch((err) => {
 				done(err);
 			});
-		}).catch((err) => {
-			done(err);
-		})
-	});
-	it('should close the client', (done) => {
-		CHC.shutdown().then(() => {
-			done();
 		}).catch((err) => {
 			done(err);
 		})
